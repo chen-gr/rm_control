@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
-project(rm_referee)
+project(rm_dart)
 
 ## Use C++14
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ## By adding -Wall and -Werror, the compiler does not ignore warnings anymore,
@@ -12,18 +12,13 @@ add_definitions(-Wall -Werror -Wno-address-of-packed-member)
 ## Find catkin macros and libraries
 find_package(serial REQUIRED)
 
-find_package(catkin REQUIRED
-	COMPONENTS
-	sensor_msgs
+find_package(catkin REQUIRED COMPONENTS
 	roscpp
-	rm_msgs
+	sensor_msgs
 	serial
-	rm_common
-	tf2_geometry_msgs
-	std_msgs
-	actionlib
-	nav_msgs
 )
+
+find_package(jsoncpp REQUIRED)
 
 ## Find system libraries
 #find_package(Eigen3 REQUIRED)
@@ -62,6 +57,7 @@ catkin_package(
 include_directories(
 	include
 	${catkin_INCLUDE_DIRS}
+	${jsoncpp_INCLUDE_DIRS}
 )
 
 ## Declare cpp executables
@@ -76,6 +72,7 @@ add_dependencies(${PROJECT_NAME}
 ## Specify libraries to link executable targets against
 target_link_libraries(${PROJECT_NAME}
 	${catkin_LIBRARIES}
+	jsoncpp_lib
 )
 
 #############

@@ -293,7 +293,7 @@ typedef struct
   uint8_t central_elevated_ground_state : 2;
   uint8_t trapezoidal_elevated_ground_state : 2;
   uint16_t be_hit_time : 9;
-  uint8_t be_hit_target : 2;
+  uint8_t be_hit_target : 3;
   uint8_t central_point_state : 2;
   uint16_t reserved : 9;
 } __packed EventData;

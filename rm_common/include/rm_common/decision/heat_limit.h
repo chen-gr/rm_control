@@ -89,14 +89,14 @@ public:
   {
     if (msg->has_shoot)
       local_shooter_cooling_heat_ += bullet_heat_;
-  }
-
-  void timerCB()
-  {
     if (local_shooter_cooling_heat_ > 0.0)
       local_shooter_cooling_heat_ -= shooter_cooling_rate_ / 10.0;
     if (local_shooter_cooling_heat_ < 0.0)
       local_shooter_cooling_heat_ = 0.0;
+  }
+
+  void timerCB()
+  {
     std_msgs::Float64 msg;
     msg.data = local_shooter_cooling_heat_;
     local_heat_pub_.publish(msg);
@@ -104,7 +104,7 @@ public:
 
   void setStatusOfShooter(const rm_msgs::GameRobotStatus data)
   {
-    shooter_cooling_limit_ = data.shooter_cooling_limit;
+    shooter_cooling_limit_ = data.shooter_cooling_limit - 30;
     shooter_cooling_rate_ = data.shooter_cooling_rate;
   }
 

@@ -1,4 +1,5 @@
 uint8 power_limit_state
+bool cap_error
 
 #standard
 uint8 shoot_frequency
